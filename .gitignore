@@ -1,6 +1,17 @@
+# Data folders
+data/raw/
+data/processed/
+data/vectordb/
+
+# Env
 .env
+
+# Logs
+logs/
+
+# Python
 __pycache__/
 *.pyc
-venv/
-.env.*
-.DS_Store
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
