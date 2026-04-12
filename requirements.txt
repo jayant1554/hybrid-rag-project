@@ -5,6 +5,7 @@ langchain==0.3.0
 langchain-community==0.3.0
 langchain-experimental==0.3.0
 
+
 # LLM Providers
 langchain-openai==0.2.0
 langchain-ollama==0.2.0
@@ -41,7 +42,7 @@ streamlit==1.38.0
 # =========================
 # Core Utilities
 # =========================
-requests==2.32.3
+
 beautifulsoup4==4.12.3
 python-dotenv==1.0.1
 pydantic==2.9.2
@@ -49,6 +50,10 @@ pydantic==2.9.2
 # =========================
 # LLM SDKs
 # =========================
+requests==2.31.0
+urllib3==1.26.18
+charset_normalizer==2.0.12
+
 cohere==5.11.0
 
 # =========================
