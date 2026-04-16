@@ -19,11 +19,12 @@ ALPHA       = 0.4   # 0=keyword only  1=dense only  0.4=favor BM25 for legal
 TOP_K       = 8
 RERANK_TOP_N = 3
 # LLM
-ollama_model =os.getenv("OLLAMA_MODEL","llama-3.2")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL","llama-3.2")
 EMBED_MODEL  = os.getenv("EMBED_MODEL",  "nomic-embed-text")
-
-COHERE_API_KEY    = os.getenv("COHERE_API_KEY", "")
-GROQ_API_KEY      = os.getenv("GROQ_API_KEY",   "")
+NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY", "meta/llama3-8b-instruct")
+RERANK_TOP_N = int(os.getenv("RERANK_TOP_N", 3))
+COHERE_API_KEY    = os.getenv("COHERE_API_KEY", "rerank-multilingual-v3.0")
+GROQ_API_KEY      = os.getenv("GROQ_API_KEY",   "mixtral-8x7b-32768")
 os.environ["LANGCHAIN_TRACING_V2"]  = os.getenv("LANGCHAIN_TRACING_V2", "false")
 os.environ["LANGCHAIN_API_KEY"]     = os.getenv("LANGCHAIN_API_KEY", "")
 os.environ["LANGCHAIN_PROJECT"]     = os.getenv("LANGCHAIN_PROJECT", "sebi-hybrid-rag")
