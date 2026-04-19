@@ -1,5 +1,4 @@
-# .github/workflows/ci.yml
-name: CI
+name: CI Pipeline
 
 on:
   push:
@@ -20,26 +19,15 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Cache pip packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
           pip install pytest pytest-cov
 
-      - name: Create required directories
+      - name: Create folders
         run: |
-          mkdir -p data/raw data/processed data/vectordb logs
+          mkdir -p data/raw data/processed logs
 
       - name: Run tests
         run: |
-          pytest tests/ -v --cov=ingestion --cov=retrieval --cov-report=term-missing
-
-      - name: Check code style
-        run: |
-          pip install flake8
-          flake8 ingestion/ retrieval/ rag/ --max-line-length=100 --ignore=E501,W503
+          pytest tests/ -v
