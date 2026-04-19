@@ -1,0 +1,33 @@
+# .github/workflows/cd.yml
+name: CD — Deploy to Hugging Face Spaces
+
+on:
+  push:
+    branches: [main]   # only deploy from main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    needs: []           # add "test" here once CI is stable
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Hugging Face Spaces
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          pip install huggingface_hub
+          python - <<'EOF'
+          from huggingface_hub import HfApi
+          api = HfApi()
+          api.upload_folder(
+              folder_path=".",
+              repo_id="your-username/sebi-rag-assistant",
+              repo_type="space",
+              token="${{ secrets.HF_TOKEN }}",
+              ignore_patterns=["data/", ".env", "__pycache__", "*.pyc", ".git/"]
+          )
+          print("Deployed successfully")
+          EOF
