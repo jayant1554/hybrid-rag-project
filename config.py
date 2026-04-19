@@ -15,13 +15,13 @@ VERSION      = "0.1.0"
 CHUNK_SIZE    = 700
 CHUNK_OVERLAP  = 100
 # Retrieval
-ALPHA       = 0.4   # 0=keyword only  1=dense only  0.4=favor BM25 for legal
+ALPHA       = 0.5   # 0=keyword only  1=dense only  0.4=favor BM25 for legal
 TOP_K       = 8
 RERANK_TOP_N = 3
 USE_LOCAL_RERANK = os.getenv("USE_LOCAL_RERANK", "true").lower() == "true"
 LOCAL_RERANK_MODEL = os.getenv("LOCAL_RERANK_MODEL", "BAAI/bge-reranker-base")
 # LLM
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL","llama-3.2")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL","llama3.2")
 EMBED_MODEL  = os.getenv("EMBED_MODEL",  "nomic-embed-text")
 NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY", "meta/llama3-8b-instruct")
 RERANK_TOP_N = int(os.getenv("RERANK_TOP_N", 3))
@@ -31,3 +31,6 @@ os.environ["LANGCHAIN_TRACING_V2"]  = os.getenv("LANGCHAIN_TRACING_V2", "false")
 os.environ["LANGCHAIN_API_KEY"]     = os.getenv("LANGCHAIN_API_KEY", "")
 os.environ["LANGCHAIN_PROJECT"]     = os.getenv("LANGCHAIN_PROJECT", "sebi-hybrid-rag")
 USE_LOCAL_RERANK = os.getenv("USE_LOCAL_RERANK", "true").lower() == "true"
+NVIDIA_API_KEY=os.getenv("NVIDIA_API_KEY",   "mistralai/mistral-7b-instruct")
+QDRANT_URL = os.getenv("QDRANT_URL")  # or use path
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
