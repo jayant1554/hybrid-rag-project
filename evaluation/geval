@@ -1,0 +1,114 @@
+import json
+from datasets import Dataset
+
+from ragas import evaluate
+from ragas.metrics import (
+    faithfulness,
+    answer_relevancy,
+    context_precision,
+    context_recall
+)
+
+from ragas.llms import LangchainLLMWrapper
+from ragas.embeddings import LangchainEmbeddingsWrapper
+
+from langchain_community.embeddings import HuggingFaceEmbeddings
+
+from llm_factory import get_llm
+from retrieval.hybrid_retriever import get_hybrid_retriever
+from retrieval.reranker import get_reranker
+from rag.chain import build_rag_chain
+from config import ALPHA
+
+
+# 🔹 Local embeddings
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+ragas_embeddings = LangchainEmbeddingsWrapper(embeddings)
+
+
+def run_evaluation(mode: str = "hybrid_rerank", alpha: float = ALPHA):
+    # 🔹 Load data
+    with open("evaluation/sample_test.json") as f:
+        test_data = json.load(f)
+
+    print("Total questions in file:", len(test_data))
+
+    # 🔹 Retriever
+    retriever = get_hybrid_retriever(alpha=alpha)
+
+    if mode == "hybrid_rerank":
+        retriever = get_reranker(retriever)
+
+    # 🔹 Chain
+    chain = build_rag_chain(retriever)
+
+    # 🔹 LLM
+    llm = get_llm("groq")
+    ragas_llm = LangchainLLMWrapper(llm)
+
+    results = []
+
+    # 🔥 FORCE EXACT LIMIT (no slicing bugs)
+    MAX_SAMPLES = 10
+
+    for i, item in enumerate(test_data):
+        if i >= MAX_SAMPLES:
+            break
+
+        q = item["question"]
+
+        print(f"Processing Q{i+1}: {q[:50]}...")
+
+        # 🔹 Get answer
+        answer = chain.invoke(q)
+
+        # 🔥 Ensure clean string
+        if hasattr(answer, "content"):
+            answer = answer.content
+        elif isinstance(answer, dict):
+            answer = answer.get("result", str(answer))
+        else:
+            answer = str(answer)
+
+        # 🔹 Retrieve context
+        docs = retriever.invoke(q)
+        contexts = [d.page_content for d in docs]
+
+        results.append({
+            "question": q,
+            "answer": answer,
+            "contexts": contexts,
+            "ground_truth": item["ground_truth"],
+        })
+
+    print("Final dataset size:", len(results))
+
+    # 🔹 Convert
+    dataset = Dataset.from_list(results)
+
+    # 🔹 Evaluate
+    scores = evaluate(
+        dataset,
+        metrics=[
+            answer_relevancy,
+            context_precision,
+        ],
+        llm=ragas_llm,
+        embeddings=ragas_embeddings,
+        raise_exceptions=False
+    )
+
+    print(f"\n=== RAGAS Results ({mode}, alpha={alpha}) ===")
+    print(scores)
+
+    # 🔹 Save results
+    with open(f"evaluation/results_{mode}.json", "w") as f:
+        json.dump(dict(scores), f, indent=2)
+
+    return scores
+
+
+if __name__ == "__main__":
+    run_evaluation()

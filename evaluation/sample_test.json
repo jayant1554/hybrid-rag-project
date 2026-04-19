@@ -1,0 +1,18 @@
+[
+  {"question": "What is the minimum corpus requirement for a Category I AIF?", "ground_truth": "Category I AIF must have a minimum corpus of INR 10 crore."},
+  {"question": "What are the insider trading disclosure obligations for promoters?", "ground_truth": "Promoters must disclose trades within 2 trading days to the company and stock exchange."},
+  {"question": "What is the lock-in period for anchor investors in an IPO?", "ground_truth": "Anchor investors have a lock-in of 30 days from the date of allotment."},
+  {"question": "What is the penalty for non-compliance with SEBI insider trading norms?", "ground_truth": "Penalty up to INR 25 crore or 3 times the profit made, whichever is higher."},
+  {"question": "What is the definition of Unpublished Price Sensitive Information?", "ground_truth": "UPSI includes financial results, dividends, mergers, changes in key managerial personnel."},
+  {"question": "What is the maximum borrowing limit for a mutual fund scheme?", "ground_truth": "A mutual fund scheme can borrow up to 20% of net assets for up to 6 months."},
+  {"question": "What are SEBI's requirements for Research Analyst registration?", "ground_truth": "Minimum qualification, net worth of INR 1 lakh for individual, NISM certification required."},
+  {"question": "What is the timeline for filing a complaint under SEBI SCORES?", "ground_truth": "Complaints must be filed within 3 years of the cause of action."},
+  {"question": "How many independent directors must a listed company have?", "ground_truth": "At least one-third of the board must be independent directors."},
+  {"question": "What does SEBI require for ESG disclosure by listed companies?", "ground_truth": "SEBI mandates BRSR reporting for top 1000 listed companies by market cap."},
+  {"question": "Who is considered a connected person under SEBI PIT regulations?", "ground_truth": "Any person associated with the company having access to UPSI by reason of such association."},
+  {"question": "What is the current SEBI rule on T+1 settlement?", "ground_truth": "SEBI mandated T+1 rolling settlement for all listed securities from January 2023."},
+  {"question": "What are SEBI algo trading risk control requirements?", "ground_truth": "Brokers must have price bands, quantity limits, and order value limits for algo trades."},
+  {"question": "What is the cooling-off period for an independent director?", "ground_truth": "A cooling-off period of 3 years is required as per SEBI LODR regulations."},
+  {"question": "What are the SME IPO eligibility criteria for NSE Emerge?", "ground_truth": "Minimum post-issue paid-up capital of INR 1 crore and not more than INR 25 crore."},
+  {"question": "What does SEBI say about mutual fund advertisement disclaimers?", "ground_truth": "Advertisements must include the disclaimer about market risks and past performance."}
+]

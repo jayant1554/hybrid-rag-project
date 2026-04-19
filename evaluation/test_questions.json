@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is the lock-in period for anchor investors in an IPO?",
+    "ground_truth": "The lock-in period for anchor investors in an IPO is 30 days from the date of allotment."
+  },
+  {
+    "question": "What is Unpublished Price Sensitive Information (UPSI)?",
+    "ground_truth": "UPSI refers to information that is not publicly available and can materially affect the price of securities if disclosed."
+  },
+  {
+    "question": "What are the disclosure requirements under insider trading regulations?",
+    "ground_truth": "Insider trading regulations require promoters and key personnel to disclose their holdings and trades to ensure transparency."
+  },
+  {
+    "question": "What is the role of a compliance officer in a listed company?",
+    "ground_truth": "A compliance officer ensures that the company adheres to SEBI regulations and handles reporting and regulatory filings."
+  },
+  {
+    "question": "What is the minimum number of investors required in a mutual fund scheme?",
+    "ground_truth": "A mutual fund scheme must have a minimum of 20 investors to ensure diversification and regulatory compliance."
+  },
+  {
+    "question": "What is the maximum holding limit of a single investor in a mutual fund scheme?",
+    "ground_truth": "A single investor cannot hold more than 25% of the corpus of a mutual fund scheme."
+  },
+  {
+    "question": "What is the requirement for ESG disclosure by listed companies?",
+    "ground_truth": "SEBI requires listed companies to disclose ESG-related information under the Business Responsibility and Sustainability Reporting (BRSR) framework."
+  },
+  {
+    "question": "What is the role of stock exchanges in algorithmic trading?",
+    "ground_truth": "Stock exchanges monitor algorithmic trading activities to detect manipulation and ensure fair market practices."
+  },
+  {
+    "question": "What is the purpose of insider trading regulations?",
+    "ground_truth": "The purpose of insider trading regulations is to prevent misuse of unpublished price sensitive information and protect investors."
+  },
+  {
+    "question": "What is the penalty for insider trading violations?",
+    "ground_truth": "Insider trading violations can result in monetary penalties, disgorgement of profits, and possible debarment from the market."
+  },
+  {
+    "question": "What is the audit requirement for algorithmic trading systems?",
+    "ground_truth": "Algorithmic trading systems must undergo periodic system audits, typically every six months, to ensure compliance and risk control."
+  },
+  {
+    "question": "What is required for registration as a research analyst?",
+    "ground_truth": "A research analyst must register with SEBI by meeting qualification criteria and submitting an application with required certifications."
+  },
+  {
+    "question": "What is the SCORES platform used for?",
+    "ground_truth": "SCORES is SEBI’s online platform used for investor grievance redressal and complaint management."
+  },
+  {
+    "question": "What is the maximum investment limit in a single issuer by a mutual fund?",
+    "ground_truth": "A mutual fund is generally restricted to investing a maximum of 10% of its NAV in a single issuer."
+  },
+  {
+    "question": "What is the timeline for disclosure of material events by listed companies?",
+    "ground_truth": "Listed companies must disclose material events to stock exchanges within 24 hours of occurrence."
+  },
+  {
+    "question": "What is the role of stock brokers in algorithmic trading?",
+    "ground_truth": "Stock brokers are responsible for ensuring proper risk management and compliance in algorithmic trading activities."
+  },
+  {
+    "question": "What is the role of SEBI in regulating mutual funds?",
+    "ground_truth": "SEBI regulates mutual funds to ensure transparency, protect investors, and maintain fair practices in the market."
+  },
+  {
+    "question": "What is the timeline for resolving investor complaints?",
+    "ground_truth": "Investor complaints should typically be resolved within 21 days through SEBI’s grievance redressal mechanism."
+  },
+  {
+    "question": "What is the purpose of BRSR reporting?",
+    "ground_truth": "BRSR reporting aims to provide disclosures on environmental, social, and governance performance of companies."
+  },
+  {
+    "question": "What is the function of clearing corporations?",
+    "ground_truth": "Clearing corporations are responsible for the settlement of trades and ensuring counterparty risk management."
+  },
+  {
+    "question": "What is the role of depositories in the securities market?",
+    "ground_truth": "Depositories hold securities in electronic form and facilitate safe and efficient transfer of ownership."
+  },
+  {
+    "question": "What is the requirement for disclosure of shareholding patterns?",
+    "ground_truth": "Listed companies are required to periodically disclose their shareholding patterns to stock exchanges."
+  },
+  {
+    "question": "What is SEBI’s role in the capital market?",
+    "ground_truth": "SEBI regulates and develops the securities market while ensuring investor protection and market integrity."
+  },
+  {
+    "question": "What is the role of merchant bankers in an IPO?",
+    "ground_truth": "Merchant bankers manage the IPO process, ensure regulatory compliance, and assist in issue structuring."
+  },
+  {
+    "question": "What is the purpose of listing obligations regulations?",
+    "ground_truth": "Listing obligations regulations ensure transparency, governance, and timely disclosures by listed entities."
+  },
+  {
+    "question": "What is the role of independent directors?",
+    "ground_truth": "Independent directors provide unbiased oversight and help ensure good corporate governance."
+  },
+  {
+    "question": "What is required for risk management in trading systems?",
+    "ground_truth": "Trading systems must implement robust risk management controls and continuous monitoring mechanisms."
+  },
+  {
+    "question": "What is the purpose of market surveillance?",
+    "ground_truth": "Market surveillance aims to detect fraud, manipulation, and ensure fair trading practices."
+  },
+  {
+    "question": "What is the role of SEBI in investor protection?",
+    "ground_truth": "SEBI protects investors by enforcing regulations, ensuring transparency, and preventing unfair practices."
+  },
+  {
+    "question": "What is the function of stock exchanges?",
+    "ground_truth": "Stock exchanges provide a platform for buying and selling securities while ensuring fair and transparent trading."
+  }
+]
