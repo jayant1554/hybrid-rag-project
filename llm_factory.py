@@ -33,4 +33,5 @@ def get_llm(provider: str = "ollama"):
             base_url="https://api.mistral.ai/v1",
             temperature=0.1,
     )
+    else:
         raise ValueError(f"Unknown provider: {provider}")
