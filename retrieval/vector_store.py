@@ -1,11 +1,10 @@
 from langchain_ollama import OllamaEmbeddings
-from langchain_qdrant import QdrantVectorStore
-from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, VectorParams
+from langchain_chroma import Chroma
 
-from config import EMBED_MODEL, TOP_K, QDRANT_URL, QDRANT_API_KEY
+from config import EMBED_MODEL, TOP_K
 
 COLLECTION = "sebi_docs"
+PERSIST_DIRECTORY = "./chroma_db"
 
 
 # ─────────────────────────────────────────────
@@ -16,48 +15,25 @@ def get_embeddings():
 
 
 # ─────────────────────────────────────────────
-# 🔹 Qdrant Client (Cloud)
+# 🔹 Load/Create Chroma Vector Store
 # ─────────────────────────────────────────────
-def get_qdrant_client():
-    return QdrantClient(
-        url=QDRANT_URL,
-        api_key=QDRANT_API_KEY,
-        timeout=60,  # 🔥 prevents timeout issues
+def get_chroma_store():
+    embeddings = get_embeddings()
+
+    store = Chroma(
+        collection_name=COLLECTION,
+        embedding_function=embeddings,
+        persist_directory=PERSIST_DIRECTORY,
     )
 
-
-# ─────────────────────────────────────────────
-# 🔹 Create Collection (if not exists)
-# ─────────────────────────────────────────────
-def create_collection_if_not_exists(client):
-    collections = [c.name for c in client.get_collections().collections]
-
-    if COLLECTION not in collections:
-        print(f"📦 Creating collection: {COLLECTION}")
-
-        client.create_collection(
-            collection_name=COLLECTION,
-            vectors_config=VectorParams(
-                size=768,               # ⚠ must match embedding size
-                distance=Distance.COSINE
-            ),
-        )
+    return store
 
 
 # ─────────────────────────────────────────────
 # 🔹 Embed + Store
 # ─────────────────────────────────────────────
 def embed_and_store(chunks: list):
-    embeddings = get_embeddings()
-    client = get_qdrant_client()
-
-    create_collection_if_not_exists(client)
-
-    store = QdrantVectorStore(
-        client=client,
-        collection_name=COLLECTION,
-        embedding=embeddings,
-    )
+    store = get_chroma_store()
 
     store.add_documents(chunks)
 
@@ -70,14 +46,7 @@ def embed_and_store(chunks: list):
 # 🔹 Load Vector Store
 # ─────────────────────────────────────────────
 def load_vector_store():
-    embeddings = get_embeddings()
-    client = get_qdrant_client()
-
-    return QdrantVectorStore(
-        client=client,
-        collection_name=COLLECTION,
-        embedding=embeddings,
-    )
+    return get_chroma_store()
 
 
 # ─────────────────────────────────────────────
