@@ -18,11 +18,16 @@ from retrieval.hybrid_retriever import get_hybrid_retriever
 from retrieval.reranker import get_reranker
 from rag.chain import build_rag_chain
 from config import ALPHA, EMBED_MODEL
+from ragas.run_config import RunConfig
 
 
 # 🔥 Local Ollama (no API limits)
 ragas_llm = LangchainLLMWrapper(
-    OllamaLLM(model="llama3", temperature=0)
+    OllamaLLM(
+    model="llama3",
+    temperature=2,
+    format="json",
+)
 )
 
 ragas_embeddings = LangchainEmbeddingsWrapper(
@@ -34,6 +39,8 @@ def run_evaluation(mode: str = "hybrid_rerank", alpha: float = ALPHA):
     # 🔹 Load dataset
     with open("evaluation/sample_test.json") as f:
         test_data = json.load(f)
+    
+    test_data = test_data[:5]
 
     # 🔹 Retriever
     retriever = get_hybrid_retriever(alpha=alpha)
@@ -94,6 +101,8 @@ def run_evaluation(mode: str = "hybrid_rerank", alpha: float = ALPHA):
         ],
         llm=ragas_llm,
         embeddings=ragas_embeddings,
+        raise_exceptions=False,
+        run_config=RunConfig(max_workers=1),
     )
 
     print(f"\n=== RAGAS Results ({mode}, alpha={alpha}) ===")

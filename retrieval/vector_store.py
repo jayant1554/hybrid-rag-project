@@ -35,7 +35,14 @@ def get_chroma_store():
 def embed_and_store(chunks: list):
     store = get_chroma_store()
 
-    store.add_documents(chunks)
+    BATCH_SIZE = 5000
+
+    for i in range(0, len(chunks), BATCH_SIZE):
+        batch = chunks[i:i + BATCH_SIZE]
+
+        print(f"📦 Storing batch {i // BATCH_SIZE + 1}")
+
+        store.add_documents(batch)
 
     print(f"✅ Stored {len(chunks)} chunks in '{COLLECTION}'")
 

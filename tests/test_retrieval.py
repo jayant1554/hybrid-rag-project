@@ -3,7 +3,7 @@
 from langchain.schema import Document
 from ingestion.chunker import chunk_documents
 
-def test_bm25_builds_from_docs():
+def test_bm25_builds_from_docs() -> None:
     from retrieval.bm25_retriever import build_bm25
     docs = [
         Document(page_content="SEBI insider trading regulations section 11", metadata={}),
